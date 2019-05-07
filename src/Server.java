@@ -10,10 +10,12 @@ public class Server {
     private int serverPort;
     private List<ClientThread> clients;
 
-    public static void main(String[] args){
+    public void mainServer(){
         Server server = new Server(portNumber);
         server.startServer();
     }
+
+    public Server(){}
 
     public Server(int portNumber){
         this.serverPort = portNumber;

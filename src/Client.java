@@ -16,7 +16,7 @@ public class Client {
     private int serverPort;
     private Scanner userInputScanner;
 
-    public static void main(String[] args){
+    public void mainClient(){
         String readName = null;
         Scanner scan = new Scanner(System.in);
         System.out.println("Please input username: ");
@@ -29,6 +29,8 @@ public class Client {
         Client client = new Client(readName, host, portNumber);
         client.startClient(scan);
     }
+
+    public Client(){}
 
     private Client(String userName, String host, int portNumber){
         this.userName  = userName;

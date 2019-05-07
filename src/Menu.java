@@ -6,6 +6,9 @@ public class Menu {
     Chat chat = new Chat();
     User user1 = new User();
     User user2 = new User();
+    Client client1 = new Client();
+    Client client2 = new Client();
+    Server server = new Server();
 
     public Menu(){
     }
@@ -23,7 +26,7 @@ public class Menu {
                 switch (option) {
 
                     case 1:
-                        System.out.println("Write the chat name: ");
+                        /*System.out.println("Write the chat name: ");
                         String chatName = sc.nextLine();
                         chat.createChat(chatName);
                         chat.userName(user1);
@@ -31,7 +34,9 @@ public class Menu {
                         do {
                             chat.writeInChat(chatName, user1.getName());
                             chat.writeInChat(chatName, user2.getName());
-                        } while (chat.terminateChat() == false);
+                        } while (chat.terminateChat() == false);*/
+                        server.mainServer();
+                        client1.mainClient();
                         break;
                     case 2:
                         break;
