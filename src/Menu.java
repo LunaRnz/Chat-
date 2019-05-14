@@ -3,17 +3,13 @@ import java.util.Scanner;
 
 public class Menu {
 
-    Chat chat = new Chat();
-    User user1 = new User();
-    User user2 = new User();
-    Client client1 = new Client();
-    Client client2 = new Client();
-    Server server = new Server();
+    private Client client1 = new Client();
+    private Server server = new Server();
 
     public Menu(){
     }
 
-    public void panel() throws IOException {
+    public void panel(){
         int option;
         Scanner sc = new Scanner(System.in);
         do {
@@ -26,24 +22,20 @@ public class Menu {
                 switch (option) {
 
                     case 1:
-                        /*System.out.println("Write the chat name: ");
-                        String chatName = sc.nextLine();
-                        chat.createChat(chatName);
-                        chat.userName(user1);
-                        chat.userName(user2);
-                        do {
-                            chat.writeInChat(chatName, user1.getName());
-                            chat.writeInChat(chatName, user2.getName());
-                        } while (chat.terminateChat() == false);*/
-                        server.mainServer();
-                        client1.mainClient();
+                        System.out.println("Do you want to create a server?(Write Yes or No)");
+                        String answer = sc.nextLine();
+                        if (answer.equals("Yes")) {
+                            server.mainServer();
+                        } else if (answer.equals("No")) {
+                            client1.mainClient();
+                        }
                         break;
                     case 2:
                         break;
                     case 3:
                         break;
                 }
-        }while (option == 3);
+        }while (option != 3);
     }
 
 }

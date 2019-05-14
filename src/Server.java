@@ -11,6 +11,7 @@ public class Server {
     private List<ClientThread> clients;
 
     public void mainServer(){
+
         Server server = new Server(portNumber);
         server.startServer();
     }

@@ -15,6 +15,7 @@ public class Client {
     private String serverHost;
     private int serverPort;
     private Scanner userInputScanner;
+    private DBConnections dbConnections = new DBConnections();
 
     public void mainClient(){
         String readName = null;
@@ -22,10 +23,14 @@ public class Client {
         System.out.println("Please input username: ");
         while (readName == null || readName.trim().equals("")){
             readName = scan.nextLine();
+            dbConnections.insertUser(readName);
             if (readName.trim().equals("")){
                 System.out.println("Invalid user name ");
             }
         }
+        System.out.println(readName + " please name the chat like this, chat+your name");
+        String chatName = scan.nextLine();
+        dbConnections.insertChat(chatName);
         Client client = new Client(readName, host, portNumber);
         client.startClient(scan);
     }
