@@ -5,6 +5,7 @@ public class Menu {
 
     private Client client1 = new Client();
     private Server server = new Server();
+    private Chat chat = new Chat();
 
     public Menu(){
     }
@@ -31,6 +32,7 @@ public class Menu {
                         }
                         break;
                     case 2:
+                        chat.viewChat();
                         break;
                     case 3:
                         break;

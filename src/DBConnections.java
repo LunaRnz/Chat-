@@ -60,14 +60,14 @@ public class DBConnections {
             stmt = conn.createStatement();
 
             String sqlUser = "CREATE TABLE IF NOT EXISTS User" +
-                    "(name VARCHAR(255) not NULL," +
+                    "(name VARCHAR(255) NOT NULL," +
                     " PRIMARY KEY (name))";
             String sqlChat = "CREATE TABLE IF NOT EXISTS Chat" +
-                    "(name VARCHAR(255)," +
+                    "(name VARCHAR(255) NOT NULL," +
                     " PRIMARY KEY (name))";
             String sqlMessage = "CREATE TABLE IF NOT EXISTS Message" +
                     "( message MEDIUMTEXT NOT NULL," +
-                    "name VARCHAR(255) not NULL," +
+                    "name VARCHAR(255) NOT NULL," +
                     " PRIMARY KEY (message(767)),"+
                     "FOREIGN KEY (name) REFERENCES Chat (name))";
             stmt.executeUpdate(sqlUser);
@@ -203,6 +203,49 @@ public class DBConnections {
             }
         }
 
+    }
+
+    public void selectChatAndMessages(){
+        url = "jdbc:mysql://localhost:3306/M03Chat";
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+            conn = DriverManager.getConnection(url, username, password);
+
+            stmt = conn.createStatement();
+
+            String sql = "SELECT * FROM Message me, Chat ch WHERE ch.name = me.name";
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()){
+                String message = rs.getString("message");
+                String name = rs.getString("name");
+
+                System.out.println(name + ": " + message);
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (stmt!=null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try{
+                if (conn!=null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

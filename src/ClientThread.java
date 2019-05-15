@@ -8,7 +8,7 @@ public class ClientThread implements Runnable{
     private Socket socket;
     private PrintWriter clientOut;
     private Server server;
-    DBConnections dbConnections = new DBConnections();
+    //DBConnections dbConnections = new DBConnections();
 
     public ClientThread(Server server, Socket socket){
         this.server = server;
@@ -32,7 +32,6 @@ public class ClientThread implements Runnable{
                         PrintWriter thatClientOut = thatClient.getWriter();
                         if (thatClientOut != null){
                             thatClientOut.write(input + "\r\n");
-                            dbConnections.insertMessage(input, "Chat extrany");
                             thatClientOut.flush();
                         }
                     }
